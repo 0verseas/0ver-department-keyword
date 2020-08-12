@@ -40,6 +40,16 @@ def main():
 		for keyword in ws_keywords:
 			writer.writerow(keyword)
 
+			# 順便再抽出最小單位的關鍵字
+			for i in keyword:
+				total_keywords.append(i)
+
+	# 把全部切割出來的小關鍵字通通放在第一行
+	with open('all_ws.csv', 'w', newline='') as awsk:
+		writer = csv.writer(awsk)
+		for j in total_keywords:
+			writer.writerow([j])
+
 
 def ckip(keywords):
 	""" CKIP Lab Chinese NLP """
