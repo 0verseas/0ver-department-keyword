@@ -50,6 +50,27 @@ def main():
 		for j in total_keywords:
 			writer.writerow([j])
 
+	# 開始計數
+
+	unique_keywords = set(total_keywords)
+
+	print("共切割出 {} 個關鍵字，去除重複後有 {} 個獨特關鍵字".format(len(total_keywords), len(unique_keywords)))
+
+	# 準備計算出現次數
+	count_keyword = {}
+	while len(unique_keywords) != 0:
+		count_keyword[unique_keywords.pop()] = 0
+	# 計數
+	for words in total_keywords:
+		count_keyword[words] += 1
+
+	# 輸出 unique 關鍵字統計結果的 csv
+	with open('count_keyword.csv', 'w', newline="") as ckf:
+		writer = csv.writer(ckf)
+		writer.writerow(['keyword', 'times'])  # header
+		for key, value in count_keyword.items():
+			writer.writerow([key, value])
+
 
 def ckip(keywords):
 	""" CKIP Lab Chinese NLP """
