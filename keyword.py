@@ -22,6 +22,7 @@ def main():
 
 	# 做點檢查是基本的
 	if os.path.isfile('./quota_keyword_search_log.csv'):
+		print('發現預設檔案，將讀取 quota_keyword_search_log.csv')
 		keywords_filename = './quota_keyword_search_log.csv'
 	else:
 		keywords_filename = input("請輸入欲分析的 csv 檔案：")
@@ -32,9 +33,12 @@ def main():
 		for row in rows:
 			origin_keywords.append(row[0])  # 將所有原始關鍵字都抽取出來
 
+	print('開始斷詞')
 	ws_keywords = ckip(origin_keywords)  # 次元切割刀
+	print('斷詞完成')
 
 	# 每列都是一個關鍵字切割後的結果的 csv
+	print('產生第一個 csv')
 	with open('origin_ws.csv', 'w', newline="") as ows:
 		writer = csv.writer(ows)
 		for keyword in ws_keywords:
@@ -45,6 +49,7 @@ def main():
 				total_keywords.append(i)
 
 	# 把全部切割出來的小關鍵字通通放在第一行
+	print('產生第二個 csv')
 	with open('all_ws.csv', 'w', newline='') as awsk:
 		writer = csv.writer(awsk)
 		for j in total_keywords:
@@ -57,6 +62,7 @@ def main():
 	print("共切割出 {} 個關鍵字，去除重複後有 {} 個獨特關鍵字".format(len(total_keywords), len(unique_keywords)))
 
 	# 準備計算出現次數
+	print('開始計數')
 	count_keyword = {}
 	while len(unique_keywords) != 0:
 		count_keyword[unique_keywords.pop()] = 0
@@ -65,6 +71,7 @@ def main():
 		count_keyword[words] += 1
 
 	# 輸出 unique 關鍵字統計結果的 csv
+	print('產生第三個 csv')
 	with open('count_keyword.csv', 'w', newline="") as ckf:
 		writer = csv.writer(ckf)
 		writer.writerow(['keyword', 'times'])  # header
