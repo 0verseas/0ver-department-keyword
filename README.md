@@ -9,13 +9,14 @@
 2. pip3 & pipenv（幫你搞定一切）
 
 ## 環境
-1. 沒有 pipenv 或 pip3 的話請先安裝這兩個：`sudo apt install python3-pip && pip3 install pipenv`
+1. 沒有 pipenv 或 pip3 的話請先安裝這兩個：`sudo apt install python3-pip && pip3 install pipenv`（Windows 的 Python 3.4 以上已經內建 pip）
 1. `pipenv install` 安裝所有需要的套件
+    - 如果系統中有兩個以上的 Python 版本，請加上 `--python 3.7` 參數
+    - 若過程中發現程式仍使用其他版本導致無法創建虛擬環境，請加上 `--deploy` 參數
 
 ## 使用
-1. 如果還沒進入到虛擬環境底下（前方會有 _(department-keyword)_ 的名稱）的話，請執行 `pipenv shell`
-3. 將整理好的關鍵字 **csv** 檔案（**只有一行，一列一個關鍵字紀錄**）放進資料夾
-4. 執行 `python3 keyword.py`
+1. 將整理好的關鍵字 **csv** 檔案（**只有一行，一列一個關鍵字紀錄**）放進資料夾
+4. 執行 `pipenv run python3 keyword.py`
 5. 程式會產出 3 個 csv：
     | csv 檔案名稱 | 說明 |
     | ----------- | --- |
