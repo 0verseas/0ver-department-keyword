@@ -7,6 +7,7 @@ import csv
 
 import data_model
 from ckiptagger import WS, POS, NER  # 斷詞、詞性標記、命名實體辨識
+from ckiptagger import construct_dictionary
 
 
 def main():
@@ -88,8 +89,15 @@ def ckip(keywords):
 	pos = POS("./data")
 	ner = NER("./data")
 
+	# 自訂字典
+	if os.path.isfile('./school_data.csv'):  # 檢查下有沒有學校名稱列表
+		print("發現官方學校名稱檔案，將作為強制詞加入字典")
+		force_dictionary = construct_dictionary(school('school_data', True))
+	else:
+		force_dictionary = {}
+
 	# 分析文本
-	ws_results = ws(keywords)
+	ws_results = ws(keywords, coerce_dictionary = force_dictionary)
 	# pos_results = pos(ws_results)
 	# ner_results = ner(ws_results, pos_results)  # ner(文本, POS結果)
 
@@ -105,6 +113,26 @@ def ckip(keywords):
 	del ner
 
 	return ws_results
+
+
+def school(filename_of_data, official = False):
+	""" 學校資料轉換成自訂字典 """
+
+	name_set = set()
+	word_to_weight = {}
+	with open('./'+filename_of_data+'.csv', 'r', newline='') as sf:
+		rows = csv.reader(sf)
+		for row in rows:
+			for name in row:
+				name_set.add(name)
+		# 設定權重
+		for i in name_set:
+			if official:
+				word_to_weight[i] = 10
+			else:
+				word_to_weight[i] = 3
+
+	return word_to_weight
 
 
 if __name__ == '__main__':
