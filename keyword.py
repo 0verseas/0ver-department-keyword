@@ -95,9 +95,14 @@ def ckip(keywords):
 		force_dictionary = construct_dictionary(school('school_data', True))
 	else:
 		force_dictionary = {}
+	if os.path.isfile('./school_alias.csv'):  # 各種別名、簡稱等
+		print("發現非官方學校名稱檔案，將作為推薦詞加入字典")
+		encourage_dictionary = construct_dictionary(school('school_alias'))
+	else:
+		encourage_dictionary = {}
 
 	# 分析文本
-	ws_results = ws(keywords, coerce_dictionary = force_dictionary)
+	ws_results = ws(keywords, recommend_dictionary = encourage_dictionary, coerce_dictionary = force_dictionary)
 	# pos_results = pos(ws_results)
 	# ner_results = ner(ws_results, pos_results)  # ner(文本, POS結果)
 
@@ -126,11 +131,12 @@ def school(filename_of_data, official = False):
 			for name in row:
 				name_set.add(name)
 		# 設定權重
+		if official:
+			word_weight = 10
+		else:
+			word_weight = 3
 		for i in name_set:
-			if official:
-				word_to_weight[i] = 10
-			else:
-				word_to_weight[i] = 3
+			word_to_weight[i] = word_weight
 
 	return word_to_weight
 

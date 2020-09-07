@@ -2,3 +2,4 @@ data.zip
 data/
 *.csv*
 !school_data.csv
+!school_alias.csv
