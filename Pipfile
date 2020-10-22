@@ -7,8 +7,8 @@ verify_ssl = true
 
 [packages]
 ckiptagger = "*"
-tensorflow = "==1.15.3"
+tensorflow = "*"
 gdown = "*"
 
 [requires]
-python_version = "3.7"
+python_version = "3"
