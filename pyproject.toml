@@ -2,7 +2,7 @@
 name = "0ver-department-keyword"
 version = "2.0.0"
 description = "0verKeyword of department search segmentation."
-authors = ["hms5232 <43672033+hms5232@users.noreply.github.com>"]
+authors = ["hms5232 <hhming@mail.ncnu.edu.tw>"]
 license = "GPL-3.0-or-later"
 
 [tool.poetry.dependencies]
