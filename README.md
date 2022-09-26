@@ -15,7 +15,7 @@
 
 ## 使用
 1. 將整理好的關鍵字 **csv** 檔案（**只有一行，一列一個關鍵字紀錄**）放進資料夾
-4. 執行 `poetry run python3 keyword.py`
+4. 執行 `poetry run python3 depkeyword.py`
 5. 程式會產出 3 個 csv：
     | csv 檔案名稱 | 說明 |
     | ----------- | --- |
