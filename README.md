@@ -6,16 +6,11 @@
 
 ## 需求
 1. Python 3.7 or later
-2. pip3 & [Poetry](https://python-poetry.org/)（幫你搞定一切）
-
-## 環境
-1. 沒有 pip3 的話請先安裝：`sudo apt install python3-pip`（Windows 的 Python 3.4 以上已經內建 pip）
-2. Poetry 安裝請參考 https://python-poetry.org/docs/#installation 依照作業系統進行
-3. `poetry install` 會建立虛擬環境並安裝所有需要的套件
+2. [uv](https://docs.astral.sh/uv/)
 
 ## 使用
 1. 將整理好的關鍵字 **csv** 檔案（**只有一行，一列一個關鍵字紀錄**）放進資料夾
-4. 執行 `poetry run python3 depkeyword.py`
+4. 執行 `uv run depkeyword.py`
 5. 程式會產出 3 個 csv：
     | csv 檔案名稱 | 說明 |
     | ----------- | --- |
