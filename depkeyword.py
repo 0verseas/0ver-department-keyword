@@ -10,6 +10,10 @@ from ckiptagger import WS, POS, NER  # 斷詞、詞性標記、命名實體辨�
 from ckiptagger import construct_dictionary
 
 
+# 原始問題 https://github.com/ckiplab/ckiptagger/issues/52
+# 暫時解法 https://github.com/ckiplab/ckiptagger/issues/50#issuecomment-2145367084
+os.environ["TF_USE_LEGACY_KERAS"]='1'
+
 def main():
 	# 先檢查模型存在與否
 	if not os.path.isdir("./data"):

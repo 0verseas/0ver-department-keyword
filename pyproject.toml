@@ -1,16 +1,14 @@
-[tool.poetry]
+[project]
 name = "0ver-department-keyword"
-version = "2.0.0"
+version = "3.0.0"
 description = "0verKeyword of department search segmentation."
-authors = ["hms5232 <hhming@mail.ncnu.edu.tw>"]
+authors = [{ name = "hms5232", email = "hhming@mail.ncnu.edu.tw" }]
+requires-python = "~=3.9"
 license = "GPL-3.0-or-later"
+dependencies = [
+    "ckiptagger[gdown,tf]>=0.2.1,<0.3",
+    "tf-keras>=2.19.0",
+]
 
-[tool.poetry.dependencies]
-python = "^3.7"
-ckiptagger = {extras = ["tf", "gdown"], version = "^0.2.1"}
-
-[tool.poetry.dev-dependencies]
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+[dependency-groups]
+dev = []
