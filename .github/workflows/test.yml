@@ -23,7 +23,7 @@ jobs:
         run: uv run --frozen depkeyword.py
       - uses: actions/upload-artifact@v4
         with:
-          name: csv
+          name: csv-python${{ matrix.python-version }}
           path: |
             quota_keyword_search_log.csv
             origin_ws.csv
