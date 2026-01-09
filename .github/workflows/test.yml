@@ -1,0 +1,40 @@
+name: Test
+
+on:
+  pull_request:
+    branches: [ "master" ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install the latest version of uv and set the python version
+        uses: astral-sh/setup-uv@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Copy fixtures
+        run: cp tests/fixtures/*.csv .
+      - name: Progress with Python ${{ matrix.python-version }}
+        run: uv run --frozen depkeyword.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: csv
+          path: |
+            quota_keyword_search_log.csv
+            origin_ws.csv
+            all_ws.csv
+            count_keyword.csv
+      - name: Assert keyword split
+        run: cat origin_ws.csv | grep "資訊,管理"
+      - name: Assert count of keywords
+        run: |
+          cat count_keyword.csv | grep "資訊,3" && \
+          cat count_keyword.csv | grep "國立暨南國際大學,1" && \
+          cat count_keyword.csv | grep "醫學,1" && \
+          cat count_keyword.csv | grep "中醫,1" && \
+          cat count_keyword.csv | grep "牙醫,1"

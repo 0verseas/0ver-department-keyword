@@ -4,3 +4,4 @@ data/
 !school_data.csv
 !school_alias.csv
 __pycache__/
+!tests/fixtures/*
