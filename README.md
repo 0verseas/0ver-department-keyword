@@ -5,7 +5,7 @@
 因為系所關鍵字統計雖然依照經驗來搜尋不會差太多，但依照經驗總有點亂槍打鳥的感覺，深怕不小心遺漏掉重要趨勢。因此寫了一個簡易分詞小工具，至少在搜尋上有個依據。
 
 ## 需求
-1. Python 3.9 or later
+1. Python 3.11 or later
 2. [uv](https://docs.astral.sh/uv/)
 
 ## 使用
@@ -19,4 +19,4 @@
     | count_keyword.csv | 計算分詞後每一個獨特關鍵字出現的次數 |
 
 ## LICENSE
-[GNU General Public License v3.0](https://github.com/hms5232/0ver-department-keyword/blob/master/LICENSE)
+[GNU General Public License v3.0](https://github.com/0verseas/0ver-department-keyword/blob/master/LICENSE)
